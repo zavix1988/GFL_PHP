@@ -16,17 +16,10 @@ include 'libs/SQLPDO.php';
 
 $bazadan = new SQLPDO();
 
-/*SELECT books.id, books.name, books.slug, books.price, books.pubyear, books.lang, books.description FROM books 
-            LEFT JOIN book_author ON books.id=book_author.book_id 
-            LEFT JOIN book_genre ON books.id=book_genre.book_id 
-        WHERE book_author.author_id = 13 OR book.name LIKE '%book' 
-        GROUP BY books.id";*/
 
 
-        
-      
-        
-        
+
+
 var_dump($bazadan->setTable('books')
                     ->setTable('book_author')
                     ->setTable('book_genre')
@@ -38,11 +31,14 @@ var_dump($bazadan->setTable('books')
                         ->setField('books', 'lang' )
                         ->setField('books', 'description' )
                         ->setField('book_author', 'author_id' )
-                            ->setJoin('INNER JOIN', 'books', 'id', 'book_author','book_id')
-                            ->setJoin('INNER JOIN', 'books', 'id', 'book_genre', 'book_id')
-                                ->setWhere('author_id', '=', '12', false, 'book_author')
-                                    ->setGroupBy('books', 'id')
-                                        ->select()
+                            ->setDistinct()
+                                ->setInnerJoin('books', 'id', 'book_author','book_id')
+                                ->setInnerJoin('books', 'id', 'book_genre', 'book_id')
+                                    ->setWhere('author_id', '=', '12', 'AND', 'book_author')
+                                    ->setWhere('name', 'LIKE', '%book', false, 'books')
+                                        ->setGroupBy('books', 'id')
+                                            ->setLimit(10)
+                                            ->select()
                         );
 
 
@@ -51,14 +47,15 @@ var_dump($bazadan->setTable('books')
 
 
 
+var_dump($bazadan->setTable('task2')->delete());
 
-
-
-
-
-
-
-
+var_dump($bazadan->setTable('books')
+                        ->setValue('name','kniga')
+                        ->setValue('slug','kniga')
+                        ->setValue('price', '123')
+                        ->setValue('pubyear', '2000')
+                        ->setValue('lang', 'RUS')
+                                ->insert());
 
 
 include 'templates/index.tpl.php';
