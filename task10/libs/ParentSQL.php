@@ -57,37 +57,37 @@ class ParentSQL
     }
 
 
-    public function setInnerJoin($primeTable, $primeFild, $joinTable, $joinField){
+    public function setInnerJoin($primeTable, $primeField, $joinTable, $joinField){
         if (in_array($primeTable, $this->tables)) {
             if (in_array($joinTable, $this->tables)) {
-                $this->joins[] = ['joinType' => 'INNER JOIN', 'primeTable' => $primeTable, 'primeFild' => $primeFild, 'joinTable' => $joinTable, 'joinField' => $joinField ];
+                $this->joins[] = ['joinType' => 'INNER JOIN', 'primeTable' => $primeTable, 'primeField' => $primeField, 'joinTable' => $joinTable, 'joinField' => $joinField ];
             }
         }
         return $this;
     }
 
-    public function setLeftJoin($primeTable, $primeFild, $joinTable, $joinField){
+    public function setLeftJoin($primeTable, $primeField, $joinTable, $joinField){
         if (in_array($primeTable, $this->tables)) {
             if (in_array($joinTable, $this->tables)) {
-                $this->joins[] = ['joinType' => 'LEFT JOIN', 'primeTable' => $primeTable, 'primeFild' => $primeFild, 'joinTable' => $joinTable, 'joinField' => $joinField ];
+                $this->joins[] = ['joinType' => 'LEFT JOIN', 'primeTable' => $primeTable, 'primeField' => $primeField, 'joinTable' => $joinTable, 'joinField' => $joinField ];
             }
         }
         return $this;
     }
 
-    public function setRightJoin($primeTable, $primeFild, $joinTable, $joinField){
+    public function setRightJoin($primeTable, $primeField, $joinTable, $joinField){
         if (in_array($primeTable, $this->tables)) {
             if (in_array($joinTable, $this->tables)) {
-                $this->joins[] = ['joinType' => 'RIGHT JOIN', 'primeTable' => $primeTable, 'primeFild' => $primeFild, 'joinTable' => $joinTable, 'joinField' => $joinField ];
+                $this->joins[] = ['joinType' => 'RIGHT JOIN', 'primeTable' => $primeTable, 'primeField' => $primeField, 'joinTable' => $joinTable, 'joinField' => $joinField ];
             }
         }
         return $this;
     }
 
-    public function setCrossJoin($primeTable, $primeFild, $joinTable, $joinField){
+    public function setCrossJoin($primeTable, $primeField, $joinTable, $joinField){
         if (in_array($primeTable, $this->tables)) {
             if (in_array($joinTable, $this->tables)) {
-                $this->joins[] = ['joinType' => 'CROSS JOIN', 'primeTable' => $primeTable, 'primeFild' => $primeFild, 'joinTable' => $joinTable, 'joinField' => $joinField ];
+                $this->joins[] = ['joinType' => 'CROSS JOIN', 'primeTable' => $primeTable, 'primeField' => $primeField, 'joinTable' => $joinTable, 'joinField' => $joinField ];
             }
         }
         return $this;

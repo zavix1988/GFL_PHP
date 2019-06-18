@@ -21,8 +21,6 @@ class SQLPDO extends ParentSQL
     }
 
     public function insert() {
-        //$sql = "INSERT INTO {$this->table} (name, slug, price, pubyear, lang, description) VALUES (?, ?, ?, ?, ?, ?)";
-
         $this->query = "INSERT INTO {$this->table[0]} (";
         $values=[];
         foreach ($this->values as $field => $value) {
@@ -38,13 +36,10 @@ class SQLPDO extends ParentSQL
         $this->query .= ')';
         
         $stmt = $this->dbh->prepare($this->query);
-        $i=1;
+        for ($i=0; $i<count($values); $i++) {
+            $stmt->bindParam($i+1, $values[$i]);
 
-        foreach ($values as $value) {
-            $stmt->bindParam($i, $value);
-            $i++;
         }
-        //return $stmt;
         $res =  $stmt->execute();
 
         if($res){
@@ -64,9 +59,10 @@ class SQLPDO extends ParentSQL
         }
         $this->query = substr($this->query, 0, -2);
         $this->query .= " FROM {$this->tables[0]} ".PHP_EOL;
+
         if(!empty($this->joins)){
             foreach($this->joins as $join){
-                $this->query .= "{$join['joinType']} {$join['joinTable']} ON {$join['primeTable']}.{$join['primeFild']}={$join['joinTable']}.{$join['joinField']} ".PHP_EOL;
+                $this->query .= "{$join['joinType']} {$join['joinTable']} ON {$join['primeTable']}.{$join['primeField']} = {$join['joinTable']}.{$join['joinField']} ".PHP_EOL;
             }
         }
         $this->query .= 'WHERE ';
@@ -87,12 +83,13 @@ class SQLPDO extends ParentSQL
         if ($this->limit) {
             $this->query .= " LIMIT {$this->limit}";
         }
+        //return $this->query; die;
         $stmt = $this->dbh->prepare($this->query);
-        $i=1;
-        foreach ($values as $value) {
-            $stmt->bindParam($i, $value);
-            $i++;  
+        for ($i=0; $i<count($values); $i++) {
+            $stmt->bindParam($i+1, $values[$i]);
+
         }
+
         $res =  $stmt->execute();
 
         $this->query ='';
@@ -114,7 +111,38 @@ class SQLPDO extends ParentSQL
 
     public function update()
     {
-        return 'update';
+        $this->query = "UPDATE {$this->tables[0]} SET ";
+        $values=[];
+        foreach ($this->values as $field => $value) {
+            $this->query .= $field.' =  ?, ';
+            $values[] = $value;
+        }
+        $this->query = substr($this->query, 0, -2);
+        if(!empty($this->conditions)){
+            $this->query .= ' WHERE ';
+            foreach ($this->conditions as $condition) {
+                if (isset($condition['table'])) {
+                    $this->query .= "{$condition['table']}.";
+                }
+
+                $this->query .= "{$condition['field']} {$condition['operator']} ? ".PHP_EOL;
+                $values[] = $condition['value'];
+
+                if (isset($condition['separator'])) {
+                    $this->query .= "{$condition['separator']} ";
+                }
+            }
+        }
+        $stmt = $this->dbh->prepare($this->query);
+        for ($i=0; $i<count($values); $i++) {
+            $stmt->bindParam($i+1, $values[$i]);
+
+        }
+        $res = $stmt->execute();
+        $this->query = '';
+        $this->tables = [];
+        $this->conditions = [];
+        return $res;
     }
 
     public function delete ()
@@ -137,10 +165,8 @@ class SQLPDO extends ParentSQL
             }
         }
         $stmt = $this->dbh->prepare($this->query);
-        $i=1;
-        foreach ($values as $value) {
-            $stmt->bindParam($i, $value);
-            $i++;  
+        for ($i=0; $i<count($values); $i++) {
+            $stmt->bindParam($i+1, $values[$i]);
         }
         $res = $stmt->execute();
         $this->query = '';
