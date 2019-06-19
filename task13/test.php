@@ -2,18 +2,19 @@
 
 
 require 'Calc.php';
+require 'config.inc.php';
 
  
-class CalculatorTests extends \PHPUnit_Framework_TestCase
+class CalculatorTests extends PHPUnit\Framework\TestCase
 {
     private $calc;
  
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->calc = new Calc();
     }
  
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->calculator = NULL;
     }
@@ -80,7 +81,7 @@ class CalculatorTests extends \PHPUnit_Framework_TestCase
 
     public function testOneDivizVar()
     {
-        $this->calc->setFirstVar(2);
+        $this->calc->setSecondVar(2);
         $result = $this->calc->oneDivizVar();
         $this->assertEquals(0.5, $result);
     }
@@ -90,8 +91,8 @@ class CalculatorTests extends \PHPUnit_Framework_TestCase
         $this->calc->setFirstVar(3);
         $this->calc->setSecondVar(-5);
         $this->calc->clearVars();
-        $this->assertEquals(NULL, $this->calc->getFirstVar());
-        $this->assertEquals(NULL, $this->calc->getSecondVar());
+        $this->assertEquals(UNSET_VAR, $this->calc->getFirstVar());
+        $this->assertEquals(UNSET_VAR, $this->calc->getSecondVar());
     }
 
     public function testMemoryAdd()
