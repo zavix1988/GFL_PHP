@@ -1,6 +1,6 @@
 <?php
 
-class ClassHasAttributeTest extends PHPUnit_Framework_TestCase
+class ClassHasAttributeTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {

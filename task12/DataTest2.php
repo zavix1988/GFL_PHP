@@ -3,10 +3,12 @@
  * Created by PhpStorm.
  * User: zavix
  * Date: 19.06.19
- * Time: 10:14
+ * Time: 10:21
  */
 
-class DataTest extends PHPUnit\Framework\TestCase
+require 'assets/CsvFileIterator.php';
+
+class DataTest2 extends PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider provider
@@ -18,11 +20,6 @@ class DataTest extends PHPUnit\Framework\TestCase
 
     public function provider()
     {
-        return array(
-            array(0, 0, 0),
-            array(0, 1, 1),
-            array(1, 0, 1),
-            array(1, 1, 3)
-        );
+        return new CsvFileIterator('assets/data.csv');
     }
 }

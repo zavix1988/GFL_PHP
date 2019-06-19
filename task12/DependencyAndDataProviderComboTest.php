@@ -1,5 +1,12 @@
 <?php
-class DependencyAndDataProviderComboTest extends PHPUnit_Framework_TestCase
+/**
+ * Created by PhpStorm.
+ * User: zavix
+ * Date: 19.06.19
+ * Time: 10:25
+ */
+
+class DependencyAndDataProviderComboTest extends PHPUnit\Framework\TestCase
 {
     public function provider()
     {

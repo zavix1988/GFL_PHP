@@ -1,9 +1,9 @@
 <?php
 
-class FileEqualsTest extends PHPUnit_Framework_TestCase
+class FileEqualsTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {
-        $this->assertFileEquals('/home/sb/expected', '/home/sb/actual');
+        $this->assertFileEquals('/var/www/html/GFL_PHP/task4/config.inc.php', '/var/www/html/GFL_PHP/task10/config.inc.php');
     }
 }

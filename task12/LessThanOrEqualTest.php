@@ -1,6 +1,6 @@
 <?php
 
-class LessThanOrEqualTest extends PHPUnit_Framework_TestCase
+class LessThanOrEqualTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {

@@ -1,6 +1,6 @@
 <?php
 
-class XmlStringEqualsXmlStringTest extends PHPUnit_Framework_TestCase
+class XmlStringEqualsXmlStringTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {

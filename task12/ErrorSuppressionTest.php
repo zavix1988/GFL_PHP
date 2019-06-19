@@ -1,5 +1,5 @@
 <?php
-class ErrorSuppressionTest extends PHPUnit_Framework_TestCase
+class ErrorSuppressionTest extends PHPUnit\Framework\TestCase
 {
     public function testFileWriting() {
         $writer = new FileWriter;

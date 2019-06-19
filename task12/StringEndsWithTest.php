@@ -1,6 +1,6 @@
 <?php
 
-class StringEndsWithTest extends PHPUnit_Framework_TestCase
+class StringEndsWithTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {

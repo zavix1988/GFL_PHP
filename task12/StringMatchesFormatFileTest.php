@@ -1,9 +1,9 @@
 <?php
 
-class StringMatchesFormatFileTest extends PHPUnit_Framework_TestCase
+class StringMatchesFormatFileTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {
-        $this->assertStringMatchesFormatFile('/path/to/expected.txt', 'foo');
+        $this->assertStringMatchesFormatFile('/var/www/html/GFL_PHP/task1/files/server.js', 'foo');
     }
 }

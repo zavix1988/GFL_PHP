@@ -1,6 +1,6 @@
 <?php
 
-class NullTest extends PHPUnit_Framework_TestCase
+class NullTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {

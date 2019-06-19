@@ -1,10 +1,10 @@
 <?php
 
-class XmlFileEqualsXmlFileTest extends PHPUnit_Framework_TestCase
+class XmlFileEqualsXmlFileTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {
         $this->assertXmlFileEqualsXmlFile(
-            '/home/sb/expected.xml', '/home/sb/actual.xml');
+            '/var/www/html/GFL_PHP/task12/assets/file1.xml', '/var/www/html/GFL_PHP/task12/assets/file2.xml');
     }
 }

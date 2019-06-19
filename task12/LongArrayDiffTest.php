@@ -1,6 +1,6 @@
 <?php
 
-class LongArrayDiffTest extends PHPUnit_Framework_TestCase
+class LongArrayDiffTest extends PHPUnit\Framework\TestCase
 {
     public function testEquality() {
         $this->assertEquals(

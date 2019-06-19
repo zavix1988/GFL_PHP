@@ -1,6 +1,6 @@
 <?php
 
-class JsonStringEqualsJsonStringTest extends PHPUnit_Framework_TestCase
+class JsonStringEqualsJsonStringTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {

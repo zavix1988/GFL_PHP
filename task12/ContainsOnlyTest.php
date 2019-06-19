@@ -1,6 +1,6 @@
 <?php
 
-class ContainsOnlyTest extends PHPUnit_Framework_TestCase
+class ContainsOnlyTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {

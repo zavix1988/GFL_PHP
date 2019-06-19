@@ -1,6 +1,6 @@
 <?php
 
-class SameTest extends PHPUnit_Framework_TestCase
+class SameTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {

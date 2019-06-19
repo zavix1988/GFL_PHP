@@ -1,6 +1,6 @@
 <?php
 
-class ArrayDiffTest extends PHPUnit_Framework_TestCase
+class ArrayDiffTest extends PHPUnit\Framework\TestCase
 {
     public function testEquality() {
         $this->assertEquals(

@@ -1,6 +1,6 @@
 <?php
 
-class InstanceOfTest extends PHPUnit_Framework_TestCase
+class InstanceOfTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {

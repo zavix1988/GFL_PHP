@@ -1,6 +1,6 @@
 <?php
 
-class EqualsTest extends PHPUnit_Framework_TestCase
+class EqualsTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {

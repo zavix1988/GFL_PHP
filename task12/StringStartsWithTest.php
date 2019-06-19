@@ -1,6 +1,6 @@
 <?php
 
-class StringStartsWithTest extends PHPUnit_Framework_TestCase
+class StringStartsWithTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {

@@ -1,6 +1,6 @@
 <?php
 
-class StringMatchesFormatTest extends PHPUnit_Framework_TestCase
+class StringMatchesFormatTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {

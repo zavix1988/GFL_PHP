@@ -1,5 +1,12 @@
 <?php
-class DependencyFailureTest extends PHPUnit_Framework_TestCase
+/**
+ * Created by PhpStorm.
+ * User: zavix
+ * Date: 19.06.19
+ * Time: 10:03
+ */
+
+class DependencyFailureTest extends PHPUnit\Framework\TestCase
 {
     public function testOne()
     {

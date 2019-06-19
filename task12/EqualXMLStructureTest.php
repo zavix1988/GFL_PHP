@@ -1,6 +1,6 @@
 <?php
 
-class EqualXMLStructureTest extends PHPUnit_Framework_TestCase
+class EqualXMLStructureTest extends PHPUnit\Framework\TestCase
 {
     public function testFailureWithDifferentNodeNames()
     {

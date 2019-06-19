@@ -1,6 +1,6 @@
 <?php
 
-class ArrayWeakComparisonTest extends PHPUnit_Framework_TestCase
+class ArrayWeakComparisonTest extends PHPUnit\Framework\TestCase
 {
     public function testEquality() {
         $this->assertEquals(

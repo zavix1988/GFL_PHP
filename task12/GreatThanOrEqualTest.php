@@ -1,9 +1,9 @@
 <?php
 
-class GreatThanOrEqualTest extends PHPUnit_Framework_TestCase
+class GreatThanOrEqualTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {
-        $this->assertGreaterThanOrEqual(2, 1);
+        $this->assertGreaterThanOrEqual(2, 3);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-class ArrayHasKeyTest extends PHPUnit_Framework_TestCase
+class ArrayHasKeyTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {

@@ -1,6 +1,6 @@
 <?php
 
-class RegExpTest extends PHPUnit_Framework_TestCase
+class RegExpTest extends PHPUnit\Framework\TestCase
 {
     public function testFailure()
     {
