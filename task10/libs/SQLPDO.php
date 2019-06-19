@@ -13,6 +13,7 @@ class SQLPDO extends ParentSQL
     public function __construct()
     {
         parent::__construct();
+
         $options = [
             \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
             \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
@@ -50,31 +51,42 @@ class SQLPDO extends ParentSQL
     }
 
     public function select() {
+
         $this->query = 'SELECT ';
         if ($this->distinct) {
             $this->query .= 'DISTINCT ';
         }
-        foreach( $this->fields as $field => $table){
-            $this->query .= $table . '.' . $field . ', ';
+
+        foreach($this->fields as $oneField){
+            $this->query .= $oneField['table'] . '.' . $oneField['field'];
+            if($oneField['alias']){
+                $this->query .= " AS {$oneField['alias']}, ";
+            }else{
+                $this->query .= ", ";
+
+            }
         }
+
         $this->query = substr($this->query, 0, -2);
         $this->query .= " FROM {$this->tables[0]} ".PHP_EOL;
-
         if(!empty($this->joins)){
             foreach($this->joins as $join){
                 $this->query .= "{$join['joinType']} {$join['joinTable']} ON {$join['primeTable']}.{$join['primeField']} = {$join['joinTable']}.{$join['joinField']} ".PHP_EOL;
             }
         }
-        $this->query .= 'WHERE ';
-        $values = [];
-        foreach ($this->conditions as $condition) {
-            if (isset($condition['table'])) {
-                $this->query .= "{$condition['table']}.";
-            }
-            $this->query .= "{$condition['field']} {$condition['operator']} ? ".PHP_EOL;
-            $values[] = $condition['value'];
-            if (isset($condition['separator'])) {
-                $this->query .= "{$condition['separator']} ";
+        if(!empty($this->conditions)){
+            $this->query .= ' WHERE ';
+            foreach ($this->conditions as $condition) {
+                if (isset($condition['table'])) {
+                    $this->query .= "{$condition['table']}.";
+                }
+
+                $this->query .= "{$condition['field']} {$condition['operator']} ? ".PHP_EOL;
+                $values[] = $condition['value'];
+
+                if (isset($condition['separator'])) {
+                    $this->query .= "{$condition['separator']} ";
+                }
             }
         }
         if(!empty($this->group)){
@@ -83,11 +95,14 @@ class SQLPDO extends ParentSQL
         if ($this->limit) {
             $this->query .= " LIMIT {$this->limit}";
         }
+
         //return $this->query; die;
         $stmt = $this->dbh->prepare($this->query);
-        for ($i=0; $i<count($values); $i++) {
-            $stmt->bindParam($i+1, $values[$i]);
+        if(isset($values)){
+            for ($i=0; $i<count($values); $i++) {
+                $stmt->bindParam($i+1, $values[$i]);
 
+            }
         }
 
         $res =  $stmt->execute();
@@ -175,5 +190,8 @@ class SQLPDO extends ParentSQL
         return $res;
     }
 
-
+    public function getJoins()
+    {
+        return $this->joins;
+    }
 }

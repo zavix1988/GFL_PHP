@@ -30,7 +30,7 @@ class ParentSQL
         $this->group = [];
         $this->query = '';
         $this->limit = 0;
-        $this->orderby = '';
+        $this->orderBy = '';
         $this->distinct = false;
         $this->errors =[];
     }
@@ -42,10 +42,10 @@ class ParentSQL
         return $this;
     }
 
-    public function setField($table, $field)
+    public function setField($table, $field, $alias=false)
     {
         if (in_array($table, $this->tables)) {
-            $this->fields[$field] = $table;
+            $this->fields[] = ['field' => $field, 'table' => $table, 'alias' => $alias];
         }
         return $this;
     }
@@ -134,8 +134,8 @@ class ParentSQL
     
     public function setOrderBy($orderBy = "ASC")
     {
-        if($orderBy == 'ASC' || $orderby == 'DESC'){
-            $this->orderby = $orderBy;
+        if($orderBy == 'ASC' || $orderBy == 'DESC'){
+            $this->orderBy = $orderBy;
         }
         return $this;
     }
